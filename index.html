@@ -199,28 +199,44 @@ section { padding:120px 0; }
 
 /* ── MONETIZE ── */
 #monetize { background:var(--bg2); }
-#monetize .inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
-.mono-phases { display:flex; flex-direction:column; gap:16px; margin-top:48px; }
-.mono-phase { border:1px solid var(--border); background:var(--bg3); transition:border-color .3s; overflow:hidden; }
-.mono-phase:hover { border-color:rgba(212,144,122,.3); }
-.mono-phase-img { width:100%; overflow:hidden; border-bottom:1px solid var(--border); }
-.mono-phase-img img { width:100%; display:block; }
-.mono-phase-body { padding:28px 32px 32px; }
-.phase-tag { font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; display:flex; align-items:center; gap:12px; }
+#monetize .inner { display:block; }
+.mono-top { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; }
+.mono-phases { display:flex; flex-direction:column; margin-top:64px; }
+.mono-phase-open { padding:56px 0; border-top:1px solid var(--border); }
+.mono-phase-open:last-child { padding-bottom:0; }
+.phase-tag { font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
 .phase-tag::after { content:''; flex:1; height:1px; background:var(--border); }
-.phase-name { font-family:'Noto Serif KR',serif; font-size:20px; font-weight:400; color:var(--cream); margin-bottom:6px; }
-.phase-price { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; line-height:1; margin-bottom:16px; }
-.phase-desc { font-size:13px; line-height:1.75; color:var(--cream2); margin-bottom:16px; }
-.phase-status { font-size:11px; letter-spacing:.12em; padding:6px 14px; display:inline-block; }
+.phase-name { font-family:'Noto Serif KR',serif; font-size:22px; font-weight:400; color:var(--cream); margin-bottom:6px; }
+.phase-price { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; line-height:1; margin-bottom:16px; }
+.phase-desc { font-size:13px; line-height:1.8; color:var(--cream2); margin-bottom:0; max-width:780px; }
+.phase-status { font-size:11px; letter-spacing:.12em; padding:6px 14px; display:inline-block; margin-top:24px; }
 .status-end  { background:rgba(200,80,80,.08); color:#c88; border:1px solid rgba(200,80,80,.15); }
 .status-live { background:rgba(100,200,130,.08); color:#8da; border:1px solid rgba(100,200,130,.2); }
-.subs-chart-block { margin-bottom:48px; }
+.mono-img-grid { display:grid; gap:8px; margin-top:28px; }
+.mono-img-grid + .mono-img-grid { margin-top:8px; }
+.mono-img-grid-1 { grid-template-columns:1fr; }
+.mono-img-grid-2 { grid-template-columns:1fr 1fr; }
+.mono-img-grid figure { margin:0; }
+.mono-img-grid figcaption { font-size:11px; color:var(--muted); letter-spacing:.06em; margin-top:6px; text-align:center; }
+.mono-img-grid img { width:100%; display:block; border-radius:4px; cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, z-index 0s; }
+.mono-img-grid img:hover { transform:scale(1.8); z-index:10; box-shadow:0 20px 60px rgba(0,0,0,0.92); }
+.mono-site-collage { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:210px 160px; gap:8px; margin-top:28px; }
+.mono-site-collage .sc-home { grid-column:1; grid-row:1/span 2; }
+.mono-site-collage .sc-sol { grid-column:2; grid-row:1; }
+.mono-site-collage .sc-fr { grid-column:3; grid-row:1; }
+.mono-site-collage .sc-board { grid-column:2/span 2; grid-row:2; }
+.mono-site-collage img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; border-radius:4px; cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, z-index 0s; }
+.mono-site-collage img:hover { transform:scale(1.5); z-index:10; box-shadow:0 20px 60px rgba(0,0,0,0.92); }
+.mono-bottom { margin-top:72px; border-top:1px solid var(--border); padding-top:56px; max-width:680px; }
+.subs-chart-block { margin-top:32px; margin-bottom:0; }
 .chart-label { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--rose); margin-bottom:16px; display:block; }
 .browser-frame { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--bg3); }
 .browser-bar { padding:10px 14px; display:flex; align-items:center; gap:6px; border-bottom:1px solid var(--border); }
 .browser-dot { width:9px; height:9px; border-radius:50%; background:var(--muted); opacity:.35; }
 .browser-url { font-size:11px; color:var(--muted); letter-spacing:.08em; margin-left:10px; }
-.browser-frame img { width:100%; display:block; }
+.browser-frame img { width:100%; display:block; cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, z-index 0s; }
+.browser-frame img:hover { transform:scale(1.8); z-index:10; box-shadow:0 20px 60px rgba(0,0,0,0.92); }
+.browser-frame:has(img:hover) { overflow:visible; }
 .learning-item { display:flex; gap:16px; padding:20px 0; border-bottom:1px solid var(--border); align-items:start; }
 .learning-item:last-child { border-bottom:none; }
 .learning-icon { color:var(--rose); font-size:14px; flex-shrink:0; margin-top:2px; }
@@ -271,7 +287,11 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
   .formats-grid { grid-template-columns:1fr; }
   .stats-grid { grid-template-columns:repeat(2,1fr); }
   .ai-grid { grid-template-columns:1fr; }
-  #monetize .inner { grid-template-columns:1fr; gap:48px; }
+  .mono-top { grid-template-columns:1fr; }
+  .mono-img-grid-2 { grid-template-columns:1fr; }
+  .mono-site-collage { grid-template-columns:1fr; grid-template-rows:auto; }
+  .mono-site-collage .sc-home,.mono-site-collage .sc-sol,.mono-site-collage .sc-fr,.mono-site-collage .sc-board { grid-column:1; grid-row:auto; height:200px; }
+  .mono-bottom { grid-template-columns:1fr; gap:48px; }
   footer .inner { grid-template-columns:1fr; gap:40px; }
   .footer-right { text-align:left; }
   #ai-ops::before { display:none; }
@@ -310,6 +330,7 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
     <div class="hero-content">
       <p class="hero-eyebrow">Instagram Magazine · Portfolio</p>
       <h1 class="hero-title">카카와리<br><em>매거진</em></h1>
+      <p style="font-size:12px;letter-spacing:.15em;color:var(--muted);margin-top:6px;">(구) 신촌매거진</p>
       <div class="hero-subtitle-row">
         <p class="hero-subtitle">사랑과 인간관계를 다루는 미디어 채널 운영 포트폴리오</p>
         <div class="hero-divider"></div>
@@ -354,7 +375,8 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
       <h2 class="section-title reveal reveal-delay-2">사랑과 인간관계,<br><em>그 모든 이야기</em></h2>
       <div class="story-body reveal reveal-delay-3">
         <p>처음엔 <strong>신촌매거진</strong>이라는 이름으로 시작했습니다. 사랑과 인간관계를 주제로, 감성적인 글귀와 공감 문장들로 채워나갔습니다.</p>
-        <p>반응이 없었습니다. 그래서 멈추지 않고, 분석했습니다. 경쟁 채널을 뜯어보고, 사람들이 진짜 원하는 것을 찾았습니다. <strong>카카와리매거진</strong>으로 리브랜딩하며 새로운 방향을 잡았습니다.</p>
+        <p>반응이 없었습니다. 그래서 멈추지 않고, 분석했습니다. 경쟁 채널을 뜯어보고, 사람들이 진짜 원하는 것을 찾아 콘텐츠 방향을 전면 수정했습니다.</p>
+        <p>이후 뉴스레터 모델로 전환하며 BI를 새롭게 정비했습니다. 상호명 문제 우려와 맞물려 <strong>카카와리매거진</strong>으로 리브랜딩했습니다.</p>
         <p>결과는 폭발적이었습니다. 9개월간 누적 조회수 7,400만 회. 혼자서, AI와 함께.</p>
       </div>
     </div>
@@ -367,7 +389,7 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
     <div class="strategy-header">
       <div>
         <p class="section-label reveal">Strategy &amp; Pivot</p>
-        <h2 class="section-title reveal reveal-delay-1">데이터로<br>읽고 <em>피벗</em>했다</h2>
+        <h2 class="section-title reveal reveal-delay-1">실패를 읽고<br>전략을 <em>바꿨다</em></h2>
       </div>
       <p class="section-lead reveal reveal-delay-2">초기 감성글 전략의 실패를 인정하고, 경쟁 채널 분석을 통해 콘텐츠 방향을 전면 수정했습니다. 이 피벗이 폭발적 성장의 기점이 되었습니다.</p>
     </div>
@@ -393,15 +415,12 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
         <div class="pivot-content">
           <p class="pivot-phase">Phase 2 · 분석 &amp; 전환</p>
           <p class="pivot-title">경쟁 채널 분석 → 포맷 피벗</p>
-          <div class="pivot-content-row">
-            <div>
-              <p class="pivot-desc">상위 채널들을 면밀히 분석한 결과, <strong style="color:var(--cream);font-weight:400;">캡션 중심의 텍스트형 릴스</strong>가 압도적으로 높은 도달률을 보이는 것을 발견했습니다. 댓글·공유·저장 수가 다른 경쟁 채널 대비 평균 5배 이상 차이났으며, 즉시 콘텐츠 전략을 전환했습니다.</p>
-              <span class="pivot-result result-mid">전략 전환 완료</span>
-            </div>
-            <div class="pivot-reels-thumb">
-              <img class="photo-std" src="images/reels-sample.png" alt="텍스트형 릴스">
-            </div>
+          <p class="pivot-desc">상위 채널들을 면밀히 분석한 결과, <strong style="color:var(--cream);font-weight:400;">캡션 중심의 텍스트형 릴스</strong>가 압도적으로 높은 도달률을 보이는 것을 발견했습니다. 댓글·공유·저장 수가 다른 경쟁 채널 대비 평균 5배 이상 차이났으며, 즉시 콘텐츠 전략을 전환했습니다.</p>
+          <div class="early-strip">
+            <img class="photo-std" src="images/reels-sample.png" alt="텍스트형 릴스">
+            <img class="photo-std" src="images/feed2.png" alt="콘텐츠 피드 2">
           </div>
+          <span class="pivot-result result-mid">전략 전환 완료</span>
         </div>
       </div>
       <div class="pivot-step step-3">
@@ -531,48 +550,81 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
 <!-- MONETIZE -->
 <section id="monetize">
   <div class="inner">
-    <div>
-      <p class="section-label reveal">Monetization</p>
-      <h2 class="section-title reveal reveal-delay-1">콘텐츠를<br><em>비즈니스로</em></h2>
+    <div class="mono-top">
+      <div>
+        <p class="section-label reveal">Monetization</p>
+        <h2 class="section-title reveal reveal-delay-1">콘텐츠를<br><em>비즈니스로</em></h2>
+      </div>
       <p class="section-lead reveal reveal-delay-2">팁 콘텐츠의 반응을 확인한 뒤, 심화 콘텐츠를 상품화하는 수익 모델을 직접 설계하고 검증했습니다.</p>
-      <div class="mono-phases reveal reveal-delay-3">
-        <div class="mono-phase">
-          <div class="mono-phase-img"><img src="images/ebook-page.png" alt="전자책 판매 페이지"></div>
-          <div class="mono-phase-body">
-            <p class="phase-tag">Phase 1</p>
-            <p class="phase-name">PDF 보고서 · 전자책</p>
-            <p class="phase-price" style="color:var(--cream2);">1,200원 <span style="color:var(--muted);font-size:18px;">/</span> 10,000원대</p>
-            <p class="phase-desc">팁 콘텐츠를 심화시켜 <strong>Gumroad(검로드)</strong>를 통해 PDF로 판매하기 시작했습니다. 이후 더 높은 자율성을 위해 <strong>아임웹</strong>으로 직접 웹사이트를 구축하고 판매를 이어갔으나, 플랫폼의 정산 미지급 이슈와 반복되는 기술적 오류로 인해 지속이 어렵다고 판단, 구독 모델로 전환했습니다.</p>
-            <span class="phase-status status-end">플랫폼 이슈로 전환</span>
-          </div>
-        </div>
-        <div class="mono-phase">
-          <div class="mono-phase-img"><img src="images/newsletter-page.png" alt="뉴스레터 구독 페이지"></div>
-          <div class="mono-phase-body">
-            <p class="phase-tag">Phase 2</p>
-            <p class="phase-name">뉴스레터 구독 모델</p>
-            <p class="phase-price" style="color:var(--rose2);">월 3,900원</p>
-            <p class="phase-desc">락인 효과를 노린 구독 모델로 전환. 구독자 56명을 확보했으며, 캐러셀 콘텐츠 마지막 장 CTA를 통해 지속적인 유입을 만들었습니다.</p>
-            <span class="phase-status status-end">서비스 종료 · 구독자 56명 달성</span>
-          </div>
-        </div>
-      </div>
     </div>
-    <div>
-      <div class="subs-chart-block reveal">
-        <span class="chart-label">구독자 성장 추이</span>
-        <div class="browser-frame">
-          <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-url">구독자 현황 · 최근 12개월</span></div>
-          <img src="images/subs-chart.png" alt="구독자 차트">
+
+    <div class="mono-phases reveal reveal-delay-3">
+
+      <!-- Phase 1 -->
+      <div class="mono-phase-open">
+        <p class="phase-tag">Phase 1</p>
+        <p class="phase-name">검로드(Gumroad) 직접 판매</p>
+        <p class="phase-price" style="color:var(--cream2);">₩1,200 <span style="color:var(--muted);font-size:18px;">/</span> ₩18,900</p>
+        <p class="phase-desc">인스타그램 팁 콘텐츠를 심화한 <strong>PDF 보고서</strong>와 <strong>전자책</strong>을 Gumroad로 직접 판매했습니다. 총 <strong>20건, $66.18</strong> 매출 달성 (PDF 보고서 12건 · 전자책 8건).</p>
+        <div class="mono-img-grid mono-img-grid-2">
+          <figure>
+            <img src="images/ebook-page.png" alt="검로드 판매 페이지">
+            <figcaption>검로드 판매 페이지</figcaption>
+          </figure>
+          <figure>
+            <img src="images/gumroad-data.png" alt="검로드 판매 데이터">
+            <figcaption>총 판매량 · 매출 데이터</figcaption>
+          </figure>
         </div>
+        <span class="phase-status status-end">총 20건 · $66.18</span>
       </div>
-      <div class="reveal reveal-delay-1">
-        <p class="section-label" style="margin-bottom:24px;">Key Learnings</p>
-        <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>구독 모델의 락인 효과</strong> — 단건 판매보다 월정액 구독이 지속성과 관계 구축 측면에서 우월함을 직접 검증했습니다.</p></div>
-        <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>플랫폼 리스크 내재화</strong> — 외부 판매 플랫폼의 수수료·정산 리스크를 경험하고, 직접 운영하는 구독 채널로 전환했습니다.</p></div>
-        <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>CTA 퍼널 설계</strong> — 콘텐츠 → 팔로우 → 구독으로 이어지는 전환 퍼널을 직접 설계하고 지속 최적화했습니다.</p></div>
-        <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>가격 감도 실험</strong> — 1,200원부터 10,000원대까지 다양한 가격대를 실험하며 심리적 가격 저항선을 직접 탐색했습니다.</p></div>
+
+      <!-- Phase 2 -->
+      <div class="mono-phase-open">
+        <p class="phase-tag">Phase 2</p>
+        <p class="phase-name">아임웹 자체 웹사이트 구축</p>
+        <p class="phase-price" style="color:var(--cream2);">₩1,500 <span style="color:var(--muted);font-size:18px;">/</span> ₩16,800</p>
+        <p class="phase-desc">Gumroad는 고객이 카드 정보를 직접 등록하고 <strong>달러화로 결제</strong>해야 하는 진입 장벽이 있었습니다. 원화 결제 환경을 만들고 브랜드 전문성을 강화하기 위해 <strong>아임웹</strong>으로 자체 웹사이트를 구축했습니다. 랜딩 페이지에 이메일 입력란을 배치해 뉴스레터 유입을 유도하고, <strong>베스트 솔루션</strong> 섹션으로 판매 상품을 큐레이션했습니다. 인기 주제는 무료 보고서 1부만 공개하고 심화 내용은 유료로 연결해 구매 전환을 유도했습니다. 방문자 <strong>2,137명</strong>을 달성했으나 전환율 0.23%, 아임웹 연 구독비 대비 확실한 적자로 모델 전환을 결정했습니다.</p>
+        <div class="mono-site-collage">
+          <img class="sc-home" src="images/site-home.png" alt="웹사이트 홈">
+          <img class="sc-sol" src="images/site-solutions.png" alt="솔루션 페이지">
+          <img class="sc-fr" src="images/site-free-report.png" alt="무료 보고서 페이지">
+          <img class="sc-board" src="images/free-report-board.png" alt="무료 연애 보고서 게시판">
+        </div>
+        <div class="mono-img-grid" style="grid-template-columns:1fr 1.8fr; margin-top:8px;">
+          <img src="images/shinchon-orders.png" alt="주문 내역" style="max-height:180px; object-fit:cover; object-position:top;">
+          <img src="images/site-data.png" alt="웹사이트 누적 데이터">
+        </div>
+        <span class="phase-status status-end">방문자 2,137명 · 전환율 0.23% · 적자</span>
       </div>
+
+      <!-- Phase 3 -->
+      <div class="mono-phase-open">
+        <p class="phase-tag">Phase 3</p>
+        <p class="phase-name">뉴스레터 구독 모델</p>
+        <p class="phase-price" style="color:var(--rose2);">월 3,900원</p>
+        <p class="phase-desc">락인 효과를 노린 구독 모델로 전환했습니다. 캐러셀 콘텐츠 마지막 장 CTA를 통해 구독 유입을 만들고, <strong>구독자 56명</strong>을 확보했습니다.</p>
+        <div class="mono-img-grid mono-img-grid-2" style="align-items:start;">
+          <img src="images/newsletter-page.png" alt="뉴스레터 구독 페이지">
+          <div class="subs-chart-block">
+            <span class="chart-label">구독자 성장 추이</span>
+            <div class="browser-frame">
+              <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-url">구독자 현황 · 최근 12개월</span></div>
+              <img src="images/subs-chart.png" alt="구독자 차트">
+            </div>
+          </div>
+        </div>
+        <span class="phase-status status-end">서비스 종료 · 구독자 56명 달성</span>
+      </div>
+
+    </div>
+
+    <div class="mono-bottom reveal">
+      <p class="section-label" style="margin-bottom:24px;">Key Learnings</p>
+      <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>구독 모델의 락인 효과</strong> — 단건 판매보다 월정액 구독이 지속성과 관계 구축 측면에서 우월함을 직접 검증했습니다.</p></div>
+      <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>전환 퍼널 직접 설계</strong> — 콘텐츠 → 팔로우 → 무료보고서 → 유료 구매로 이어지는 퍼널을 직접 구축하고 최적화했습니다.</p></div>
+      <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>무료→유료 전환 구조</strong> — 인기 주제는 무료 보고서를 미완결로 두고 심화 내용을 유료화해 자연스러운 구매 전환을 유도했습니다.</p></div>
+      <div class="learning-item"><span class="learning-icon">↗</span><p class="learning-text"><strong>가격 감도 실험</strong> — ₩1,200부터 ₩18,900까지 다양한 가격대를 직접 실험하며 심리적 가격 저항선을 탐색했습니다.</p></div>
     </div>
   </div>
 </section>
