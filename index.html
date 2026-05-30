@@ -89,9 +89,12 @@ section { padding:120px 0; }
 /* ── STORY ── */
 #story { background:var(--bg2); }
 #story .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
-.story-phones { display:flex; gap:4px; align-items:flex-start; }
-.story-phone-wrap { position:relative; flex-shrink:0; }
+.story-phones { display:flex; gap:4px; align-items:flex-start; position:relative; }
+.story-phone-wrap { position:relative; flex-shrink:0; z-index:1; cursor:zoom-in; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, z-index 0s; }
+.story-phone-wrap:hover { transform:scale(2.2); z-index:20; box-shadow:0 24px 64px rgba(0,0,0,0.85); }
 .story-phones .photo-std { filter:grayscale(10%) sepia(6%) brightness(.9); }
+.story-phones > .photo-std { cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, filter 0.35s, z-index 0s; }
+.story-phones > .photo-std:hover { transform:scale(2.2); z-index:20; box-shadow:0 24px 64px rgba(0,0,0,0.85); filter:grayscale(0%) sepia(0%) brightness(1); }
 .story-tag { position:absolute; bottom:0; right:0; background:var(--rose); color:var(--bg); font-size:10px; letter-spacing:.22em; text-transform:uppercase; padding:8px 14px; font-weight:500; border-radius:0 0 var(--photo-r) 0; }
 .story-content { padding-top:20px; }
 .rebrand-badge { display:inline-flex; align-items:center; gap:12px; background:var(--bg3); border:1px solid var(--border); padding:10px 16px; margin-bottom:32px; font-size:12px; }
@@ -122,11 +125,13 @@ section { padding:120px 0; }
 .result-bad  { background:rgba(200,80,80,.1); color:#e88; border:1px solid rgba(200,80,80,.2); }
 .result-mid  { background:rgba(196,160,90,.1); color:var(--gold); border:1px solid rgba(196,160,90,.2); }
 .result-good { background:rgba(212,144,122,.1); color:var(--rose2); border:1px solid rgba(212,144,122,.25); }
-.early-strip { display:flex; gap:4px; margin-top:16px; overflow-x:auto; scrollbar-width:none; }
+.early-strip { display:flex; gap:4px; margin-top:16px; overflow:visible; scrollbar-width:none; }
 .early-strip::-webkit-scrollbar { display:none; }
-.early-strip .photo-std { filter:grayscale(25%) sepia(12%) brightness(.7); }
-.early-strip .photo-std:hover { filter:grayscale(6%) brightness(.88); transition:filter .35s; }
+.early-strip .photo-std { filter:grayscale(25%) sepia(12%) brightness(.7); cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), filter 0.35s, box-shadow 0.35s, z-index 0s; }
+.early-strip .photo-std:hover { transform:scale(1.5); z-index:10; filter:grayscale(0%) brightness(1); box-shadow:0 16px 48px rgba(0,0,0,0.85); }
 .pivot-content-row { display:grid; grid-template-columns:1fr var(--photo-w); gap:20px; align-items:start; margin-top:2px; }
+.pivot-reels-thumb { cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s, z-index 0s; }
+.pivot-reels-thumb:hover { transform:scale(1.5); z-index:10; box-shadow:0 16px 48px rgba(0,0,0,0.85); }
 .pivot-reels-thumb .photo-std { filter:brightness(.88); }
 
 /* ── FORMATS ── */
@@ -169,6 +174,11 @@ section { padding:120px 0; }
 .badge-rose { background:rgba(212,144,122,.12); color:var(--rose2); border:1px solid rgba(212,144,122,.25); }
 .badge-gold { background:rgba(196,160,90,.12); color:var(--gold); border:1px solid rgba(196,160,90,.25); }
 .badge-blue { background:rgba(142,184,212,.1); color:#8eb8d4; border:1px solid rgba(142,184,212,.2); }
+
+/* ── HOVER ZOOM: formats & carousel ── */
+.reels-preview .photo-std { cursor:zoom-in; position:relative; z-index:1; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.reels-preview .photo-std:hover { transform:scale(2.2); z-index:200; }
+.card-fan, .carousel-fan-wrap { cursor:zoom-in; }
 
 /* Carousel detail — two examples side by side */
 .carousel-detail { background:var(--bg2); padding:80px 0 120px; border-top:1px solid var(--border); }
@@ -268,6 +278,9 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
   .hero-stats { gap:32px; }
   .pivot-content-row { grid-template-columns:1fr; }
   .pivot-reels-thumb { display:none; }
+  .early-strip { overflow-x:auto; }
+  .early-strip .photo-std:hover { transform:none; }
+  .card-fan .fan-item img:hover, .carousel-fan-wrap .fan-item img:hover { transform:none; }
   .carousel-fan-wrap { height:300px; }
   .carousel-sets-grid { grid-template-columns:1fr; gap:60px; }
 }
@@ -382,7 +395,7 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
           <p class="pivot-title">경쟁 채널 분석 → 포맷 피벗</p>
           <div class="pivot-content-row">
             <div>
-              <p class="pivot-desc">상위 채널들을 면밀히 분석한 결과, <strong style="color:var(--cream);font-weight:400;">캡션 중심의 텍스트형 릴스</strong>가 높은 도달률을 보이는 것을 발견했습니다. 즉시 콘텐츠 전략을 전환했습니다.</p>
+              <p class="pivot-desc">상위 채널들을 면밀히 분석한 결과, <strong style="color:var(--cream);font-weight:400;">캡션 중심의 텍스트형 릴스</strong>가 압도적으로 높은 도달률을 보이는 것을 발견했습니다. 댓글·공유·저장 수가 다른 경쟁 채널 대비 평균 5배 이상 차이났으며, 즉시 콘텐츠 전략을 전환했습니다.</p>
               <span class="pivot-result result-mid">전략 전환 완료</span>
             </div>
             <div class="pivot-reels-thumb">
@@ -571,10 +584,10 @@ footer .inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-ite
     <h2 class="section-title reveal reveal-delay-1">AI와 함께,<br><em>1인이 만든</em> 미디어</h2>
     <div class="ai-grid">
       <div class="ai-cards reveal reveal-delay-2">
-        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">기획</p><p class="ai-card-desc">트렌드 분석, 콘텐츠 아이디에이션, 포맷 기획 전 과정에 생성형 AI를 활용해 기획 리드타임을 단축했습니다.</p></div></div>
-        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">카피라이팅</p><p class="ai-card-desc">감성 문구, 팁 문장, 캡션 초안 생성 및 다듬기에 AI를 적극 활용해 콘텐츠 퀄리티를 유지했습니다.</p></div></div>
-        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">비주얼 제작</p><p class="ai-card-desc">썸네일, 카드 이미지 생성 및 레이아웃 설계까지 AI 도구를 통해 디자이너 없이 운영했습니다.</p></div></div>
-        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">뉴스레터</p><p class="ai-card-desc">구독 콘텐츠 초안 작성 및 편집 자동화로 발행 주기를 일정하게 유지했습니다.</p></div></div>
+        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">기획</p><p class="ai-card-desc">트렌드 분석, 콘텐츠 아이디에이션, 포맷 기획 전 과정에 Gemini를 활용해 기획 리드타임을 단축했습니다.</p></div></div>
+        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">카피라이팅</p><p class="ai-card-desc">감성 문구, 팁 문장, 캡션 초안 생성 및 다듬기에 Gemini를 적극 활용해 콘텐츠 퀄리티를 유지했습니다.</p></div></div>
+        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">비주얼 제작</p><p class="ai-card-desc">썸네일, 카드 이미지, 레이아웃 설계까지 모두 직접 제작했습니다. 디자인 툴을 활용한 1인 제작 방식으로 운영했습니다.</p></div></div>
+        <div class="ai-card"><span class="ai-card-icon">✦</span><div><p class="ai-card-title">뉴스레터</p><p class="ai-card-desc">구독 콘텐츠 초안 작성 및 편집에 Gemini를 활용해 발행 주기를 일정하게 유지했습니다.</p></div></div>
       </div>
       <div class="ai-quote reveal reveal-delay-3">
         <p class="ai-quote-text">"리소스 투입 대비<br><em>콘텐츠 생산성 극대화</em>—<br>AI 없이는 불가능했던 숫자입니다."</p>
@@ -640,29 +653,72 @@ function initFan(container) {
   const items = [...container.querySelectorAll(':scope > .fan-item')];
   const n = items.length;
   if (!n) return;
-  let active = 0;
+  let active = 0, hovered = false;
   const counterEl = container.querySelector('.fan-current');
   const ANGLE = 11, X = 22, SCALE = 0.04, DIM = 0.10;
+
+  const clippingParents = [];
+  let cur = container.parentElement;
+  while (cur && cur !== document.body) {
+    const cs = window.getComputedStyle(cur);
+    if (cs.overflow === 'hidden' || cs.overflowX === 'hidden' || cs.overflowY === 'hidden') clippingParents.push(cur);
+    cur = cur.parentElement;
+  }
+
   function update() {
     items.forEach((item, i) => {
       let rel = i - active;
       if (rel >  n / 2) rel -= n;
       if (rel < -n / 2) rel += n;
       const abs = Math.abs(rel);
-      item.style.transform = `translate(calc(-50% + ${rel * X}px), -50%) rotate(${rel * ANGLE}deg) scale(${1 - abs * SCALE})`;
-      item.style.zIndex    = n - abs;
+      const zoom = (hovered && abs === 0) ? 2.2 : 1;
+      item.style.transform = `translate(calc(-50% + ${rel * X}px), -50%) rotate(${rel * ANGLE}deg) scale(${(1 - abs * SCALE) * zoom})`;
+      item.style.zIndex    = (hovered && abs === 0) ? 200 : n - abs;
       item.style.filter    = `brightness(${1 - abs * DIM})`;
       item.style.boxShadow = abs === 0 ? '0 20px 56px rgba(0,0,0,.8)' : '0 10px 32px rgba(0,0,0,.55)';
     });
     if (counterEl) counterEl.textContent = active + 1;
   }
+
+  container.addEventListener('mouseenter', () => {
+    hovered = true;
+    clippingParents.forEach(p => (p.style.overflow = 'visible'));
+    container.style.zIndex = '50';
+    update();
+  });
+  container.addEventListener('mouseleave', () => {
+    hovered = false;
+    clippingParents.forEach(p => (p.style.overflow = ''));
+    container.style.zIndex = '';
+    update();
+  });
   items.forEach((item, i) => {
-    item.addEventListener('click', e => { e.stopPropagation(); active = i; update(); });
+    item.addEventListener('click', e => { e.stopPropagation(); active = (i === active) ? (active + 1) % n : i; update(); });
   });
   container.addEventListener('click', () => { active = (active + 1) % n; update(); });
   update();
 }
 document.querySelectorAll('.card-fan, .carousel-fan-wrap').forEach(initFan);
+
+document.querySelectorAll('.reels-preview').forEach(preview => {
+  const parents = [];
+  let el = preview.parentElement;
+  while (el && el !== document.body) {
+    const cs = window.getComputedStyle(el);
+    if (cs.overflow === 'hidden' || cs.overflowX === 'hidden' || cs.overflowY === 'hidden') parents.push(el);
+    el = el.parentElement;
+  }
+  if (!parents.length) return;
+  preview.addEventListener('mouseenter', () => {
+    parents.forEach(p => (p.style.overflow = 'visible'));
+    preview.style.position = 'relative';
+    preview.style.zIndex = '50';
+  });
+  preview.addEventListener('mouseleave', () => {
+    parents.forEach(p => (p.style.overflow = ''));
+    preview.style.zIndex = '';
+  });
+});
 </script>
 </body>
 </html>
